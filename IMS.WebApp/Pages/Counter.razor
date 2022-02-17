@@ -10,7 +10,7 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 <br />
-<ViewInventoriesComponent></ViewInventoriesComponent>
+<ViewInventoriesComponent OnSearchInventories="OnSearchInventories"></ViewInventoriesComponent>
 
 @code {
     private int currentCount = 0;
@@ -26,4 +26,10 @@
     {
         currentCount++;
     }
+
+    private void OnSearchInventories(List<Inventory> inventories)
+    {
+        
+    }
+
 }
