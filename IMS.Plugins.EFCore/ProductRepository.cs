@@ -24,6 +24,9 @@ namespace IMS.Plugins.EFCore
 
             db.Products.Add(product);
             await db.SaveChangesAsync();
+
+            // Testing purpose to see if product was added
+            //var prods = db.Products.Include(x => x.ProductInventories).ThenInclude(x => x.Inventory).ToList();
         }
 
         public async Task<List<Product>> GetProductsByName(string name)
