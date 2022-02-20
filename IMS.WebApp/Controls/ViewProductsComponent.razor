@@ -16,7 +16,7 @@
 
     private async Task ViewProducts()
     {
-        var products = (await ViewProductsByNameUseCase.ExecuteAsync(productNameToSearch??string.Empty)).ToList();
+        var products = (await ViewProductsByNameUseCase.ExecuteAsync(productNameToSearch??string.Empty))?.ToList();
 
         await OnSearchProducts.InvokeAsync(products);
     }

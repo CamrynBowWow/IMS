@@ -5,7 +5,9 @@
 
 <h3>Inventory List</h3>
 <br/>
-<ViewInventoriesComponent OnSearchInventories="OnSearchInventories"></ViewInventoriesComponent>
+<ViewInventoriesComponent 
+    OnSearchInventories="OnSearchInventories"
+></ViewInventoriesComponent>
 
 @if (listInventories != null)
 {
@@ -29,9 +31,19 @@
 }
 <br/>
 <button type="button" class="btn btn-primary" @onclick="AddInventory">Add Inventory</button>
+@*<p>
+    @inv?.InventoryName // Was for testing
+
+    Was for testing [ Goes in ViewInventoriesComponent tags for testing]
+
+    DisplaySearchResult="true"
+    OnSelectInventory="OnSelectInventory" 
+</p>*@
 
 @code {
     private List<Inventory>? listInventories;
+
+    //private Inventory inv;  Was for testing 
 
     protected override async Task OnInitializedAsync()
     {
@@ -48,5 +60,11 @@
     {
         NavigationManager.NavigateTo("/addinventory");
     }  
+
+    // Was for testing
+    //private void OnSelectInventory(Inventory inventory)
+    //{
+    //    inv = inventory;
+    //}
 
 }
