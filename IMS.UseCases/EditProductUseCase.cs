@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IMS.UseCases.PluginInterfaces;
 using IMS.CoreBusiness;
+using IMS.UseCases.PluginInterfaces;
 
 namespace IMS.UseCases
 {
-    public class ViewProductsByNameUseCase : IViewProductsByNameUseCase
+    public class EditProductUseCase : IEditProductUseCase
     {
         private readonly IProductRepository productRepository;
 
-        public ViewProductsByNameUseCase(IProductRepository productRepository)
+        public EditProductUseCase(IProductRepository productRepository)
         {
             this.productRepository = productRepository;
         }
 
-        public async Task<List<Product>> ExecuteAsync(string name = "")
+        public async Task ExecuteAsync(Product product)
         {
-            return await this.productRepository.GetProductsByNameAsync(name);
+            await this.productRepository.UpdateProductAsync(product);
         }
     }
 }

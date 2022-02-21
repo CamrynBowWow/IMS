@@ -1,4 +1,5 @@
-﻿
+﻿@inject NavigationManager NavigationManager
+
 @if (Product != null)
 {
     <tr>
@@ -19,7 +20,7 @@
 
     private void EditProduct(int productId)
     {
-
+        NavigationManager.NavigateTo($"/editproduct/{productId}");
     }
 
     private void DeleteProduct(Product product)
