@@ -22,11 +22,11 @@ namespace IMS.Plugins.EFCore
 
         public async Task ProduceAsync(string productionNumber, Product product, int quantity, double price, string doneBy)
         {
-            var prod = this.productRepository.GetProductByIdAsync(product.ProductId);
+            var prod = await this.productRepository.GetProductByIdAsync(product.ProductId);
 
             if (prod != null)
             {
-                foreach(var pi in prod.ProductInventories)
+                foreach (var pi in prod.ProductInventories)
                 {
                     pi.Inventory.Quantity -= quantity * pi.InventoryQuantity;
                 }
