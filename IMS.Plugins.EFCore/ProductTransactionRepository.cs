@@ -28,7 +28,20 @@ namespace IMS.Plugins.EFCore
             {
                 foreach (var pi in prod.ProductInventories)
                 {
+                    int qtyBefore = pi.Inventory.Quantity;
                     pi.Inventory.Quantity -= quantity * pi.InventoryQuantity;
+
+                    this.db.InventoryTransactions.Add(new InventoryTransaction
+                    {
+                        ProductionNumber = productionNumber,
+                        InventoryId = pi.Inventory.InventoryId,
+                        QuantityBefore = qtyBefore,
+                        ActivityType = InventoryTransactionType.ProduceProduct,
+                        QuantityAfter = pi.Inventory.Quantity,
+                        TransactionDate = DateTime.Now,
+                        DoneBy = doneBy,
+                        UnitPrice = price
+                    });
                 }
             }
 
