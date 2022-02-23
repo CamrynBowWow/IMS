@@ -24,4 +24,12 @@
     <ProjectReference Include="..\IMS.Plugins.EFCore\IMS.Plugins.EFCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Reports\InventoryTransactions.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Reports\InventoryTransactions.razor" />
+  </ItemGroup>
+
 </Project>
