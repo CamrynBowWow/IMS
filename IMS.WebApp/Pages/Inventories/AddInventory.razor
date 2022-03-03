@@ -1,6 +1,6 @@
 ﻿@page "/addinventory"
 
-@attribute [Authorize]
+@*@attribute [Authorize]*@
 
 @inject IAddInventoryUseCase AddInventoryUseCase
 @inject NavigationManager NavigationManager
@@ -29,6 +29,8 @@
         </div>
         <br/>
         <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" @onclick="Back" class="btn btn-secondary">Back</button>
+        
     </EditForm>
 }
 
@@ -49,5 +51,10 @@
             await AddInventoryUseCase.ExecuteAsync(this.inventory);
             NavigationManager.NavigateTo("/inventories");
         }
+    }
+
+    private void Back()
+    {
+        NavigationManager.NavigateTo("/inventories");
     }
 }

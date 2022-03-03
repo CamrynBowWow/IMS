@@ -1,9 +1,10 @@
 ﻿@page "/produce"
 
-@attribute [Authorize]
+@*@attribute [Authorize]*@
 
 @inject IProduceProductUseCase ProduceProductUseCase
 @inject IValidateEnoughInventoriesForProducingUseCase ValidateEnoughInventoriesForProducingUseCase
+@*@inject NavigationManager NavigationManager*@
 
 <ErrorMessageComponent ErrorMessage="@errorMessage"></ErrorMessageComponent>
 <h3>Produce Product</h3>
@@ -43,6 +44,7 @@
         </div>
         <br/>
         <button type="submit" class="btn btn-primary">Produce</button>
+        @*<button type="button" @onclick="Back" class="btn btn-secondary">Back</button>*@
 
     </EditForm>
 }
@@ -57,7 +59,7 @@
     {
         if (!await ValidateEnoughInventoriesForProducingUseCase.ExecuteAsync(this.selectedProduct, this.produceViewModel.QuantityToProduce))
         {
-            errorMessage = $"The inventories are not enough for producing {this.selectedProduct.ProductName} X {this.produceViewModel.QuantityToProduce} times";
+            errorMessage = $"The inventories are not enough for producing {this.selectedProduct.ProductName} {this.produceViewModel.QuantityToProduce} times";
 
             return;
         }
@@ -85,4 +87,8 @@
         produceViewModel.ProductName = product.ProductName;
     }
 
+    //private void Back()
+    //{
+        
+    //}
 }

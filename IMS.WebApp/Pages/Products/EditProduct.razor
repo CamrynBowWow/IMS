@@ -1,6 +1,6 @@
 ﻿@page "/editproduct/{id:int}"
 
-@attribute [Authorize]
+@*@attribute [Authorize]*@
 
 @inject NavigationManager NavigationManager
 @inject IViewProductByIdUseCase ViewProductByIdUseCase
@@ -36,6 +36,7 @@
 
         <br/>
         <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" @onclick="Back" class="btn btn-secondary">Back</button>
 
     </EditForm>
 }
@@ -60,6 +61,11 @@
     {
         EditProductUseCase.ExecuteAsync(this.product);
         NavigationManager.NavigateTo("/products");
+    }
+
+    private void Back()
+    {
+         NavigationManager.NavigateTo("/products");
     }
 
 }

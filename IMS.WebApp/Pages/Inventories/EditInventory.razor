@@ -1,6 +1,6 @@
 ﻿@page "/editinventory/{invId:int}"
 
-@attribute [Authorize]
+@*@attribute [Authorize]*@
 
 @inject NavigationManager NavigationManager
 @inject IViewInventoryByIdUseCase ViewInventoryByIdUseCase
@@ -30,6 +30,7 @@
         </div>
         <br/>
         <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" @onclick="Back" class="btn btn-secondary">Back</button>
     </EditForm>
 }
 
@@ -52,6 +53,11 @@
             await EditInventoryUseCase.ExecuteAsync(this.inventory);
             NavigationManager.NavigateTo("/inventories");
         }
+    }
+
+    private void Back()
+    {
+        NavigationManager.NavigateTo("/inventories");
     }
 
 }
