@@ -37,9 +37,14 @@
         set
         {
             _inventoryNameToSearch = value;
-            if(!string.IsNullOrWhiteSpace(_inventoryNameToSearch) && _inventoryNameToSearch.Length > 2)
+            if(!string.IsNullOrWhiteSpace(_inventoryNameToSearch) && _inventoryNameToSearch.Length > 1)
             {
                 ViewInventories();
+            }
+            else
+            {
+                ViewInventories();
+                
             }
         } 
     }
