@@ -8,32 +8,32 @@
         <button class="navbar-toggler p-0 border-0" type="button" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+        <div class="@NavMenuCssClass">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All" @onclick="CollapseSubNavMenu">
+                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All" @onclick="ToggleNavMenu">
                         Home
                     </NavLink>
                 </li>
                 
                 <li class="nav-item">
-                    <NavLink class="nav-link" href="inventories" @onclick="CollapseSubNavMenu">
+                    <NavLink class="nav-link" href="inventories" @onclick="ToggleNavMenu">
                         Inventories
                     </NavLink>
                 </li>
 
                 <li class="nav-item">
-                    <NavLink class="nav-link" href="products" @onclick="CollapseSubNavMenu">
+                    <NavLink class="nav-link" href="products" @onclick="ToggleNavMenu">
                         Products
                     </NavLink>
                 </li>
                 <li class="nav-item dropdown">
-                    <NavLink class="nav-link dropdown-toggle" href="#" @onclick="ToggleSubNavMenu" id="navbarDropdown">
+                    <NavLink class="nav-link dropdown-toggle" href="#" @onclick="ToggleSubNavActivities" id="Activities">
                         Activities
                     </NavLink>
-                    @if (expandSubNavSettings)
+                    @if (expandSubNavActivities)
                     {
-                        <ul class="dropdown-menu show" aria-labelledby="navbarDropdown" @onclick="ToggleSubNavMenu">
+                        <ul class="dropdown-menu show" aria-labelledby="navbarDropdown" @onclick="CollapseSubNavMenu">
                             <li class="nav-item">
                                 <NavLink class="dropdown-item" href="purchase">
                                     <span class="oi oi-fork" aria-hidden="true"></span> Purchase
@@ -55,12 +55,12 @@
                     }
                 </li>
                 <li class="nav-item dropdown">
-                    <NavLink class="nav-link dropdown-toggle" href="#" @onclick="ToggleSubNavMenu1" id="navbarDropdown">
+                    <NavLink class="nav-link dropdown-toggle" href="#" @onclick="ToggleSubNavReport" id="Report">
                         Reports
                     </NavLink>
-                    @if (expandSubNavSettings1)
+                    @if (expandSubNavReports)
                     {
-                        <ul class="dropdown-menu show" aria-labelledby="navbarDropdown" @onclick="ToggleSubNavMenu1">
+                        <ul class="dropdown-menu show" aria-labelledby="navbarDropdown" @onclick="CollapseSubNavMenu">
                             <li class="nav-item">
                                 <NavLink class="dropdown-item" href="inventoryreport">
                                     <span class="oi oi-fork" aria-hidden="true"></span> Inventory Transactions
@@ -109,8 +109,8 @@
 @code{
     bool collapseNavMenu = true;
 
-    private bool expandSubNavSettings;
-    private bool expandSubNavSettings1;
+    private bool expandSubNavActivities;
+    private bool expandSubNavReports;
 
     string baseMenuClass = "navbar-collapse offcanvas-collapse";
 
@@ -118,27 +118,25 @@
 
     void ToggleNavMenu()
     {
-        if (!expandSubNavSettings)
-        {
-            collapseNavMenu = !collapseNavMenu;
-        }
+        CollapseSubNavMenu();
     }
 
-    void ToggleSubNavMenu()
+    void ToggleSubNavActivities()
     {
-        expandSubNavSettings1 = false;
-        expandSubNavSettings = !expandSubNavSettings;
+        expandSubNavReports = false;
+        expandSubNavActivities = !expandSubNavActivities;
     }
 
-    void ToggleSubNavMenu1()
+    void ToggleSubNavReport()
     {
-        expandSubNavSettings = false;
-        expandSubNavSettings1 = !expandSubNavSettings1;
+        expandSubNavActivities = false;
+        expandSubNavReports = !expandSubNavReports;
     }
 
     void CollapseSubNavMenu()
     {
-        expandSubNavSettings = false;
-        expandSubNavSettings1 = false;
+        expandSubNavActivities = false;
+        expandSubNavReports = false;
+        collapseNavMenu = !collapseNavMenu;
     }
 }
